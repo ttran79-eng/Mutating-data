@@ -1,4 +1,13 @@
+"use client";
 export default function NewPostPage() {
+  function createPost(formData){
+    const title = formData.get('title');
+    const image = formData.get('image');
+    const content = formData.get('content');
+
+    console.log(title,image,content);
+
+  }
   return (
     <>
       <h1>Create a new post</h1>
