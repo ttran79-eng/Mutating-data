@@ -1,3 +1,7 @@
+import FormSubmit from "@/components/form-submit";
+import { storePost } from "@/lib/posts";
+import { redirect } from "next/navigation";
+
 export default function NewPostPage() {
 
   async function createPost(formData){
@@ -7,9 +11,19 @@ export default function NewPostPage() {
     const image = formData.get('image');
     const content = formData.get('content');
 
-    console.log(title,image,content);
+    // The const title is named the same as the database so we can use the shortcut here...
+    // Currently no path to image
+    await storePost({
+      imageUrl: '',
+      title,
+      content,
+      userId: 1
+    });
+
+    redirect('/feed');
 
   }
+
   return (
     <>
       <h1>Create a new post</h1>
@@ -31,10 +45,7 @@ export default function NewPostPage() {
           <label htmlFor="content">Content</label>
           <textarea id="content" name="content" rows="5" />
         </p>
-        <p className="form-actions">
-          <button type="reset">Reset</button>
-          <button>Create Post</button>
-        </p>
+        <FormSubmit />
       </form>
     </>
   );
