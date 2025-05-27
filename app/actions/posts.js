@@ -1,6 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { storePost } from "@/lib/posts";
+import { uploadImage } from "@/lib/cloudinary";
 
 export async function createPost(prevState, formData){
 
